@@ -40,7 +40,7 @@ public class IdCard {
 	
 	@NotNull(message="Gender cannot be null")
 	@Enumerated(EnumType.STRING)
-	private Enum gender;
+	private gender Gender;
 	
 	@NotNull(message="Address cannot be null")
 	private String address;
