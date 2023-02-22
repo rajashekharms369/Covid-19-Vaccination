@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -35,5 +36,5 @@ public class Vaccine {
 	private VaccineCount vaccinecount;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "vaccine")
-	private List<Member> member;
+	private List<Member> member = new ArrayList<>();
 }

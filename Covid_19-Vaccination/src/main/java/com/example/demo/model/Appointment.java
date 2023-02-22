@@ -32,7 +32,7 @@ public class Appointment {
 	private long bookingId;
 	
 	@NotBlank(message = "Mobile Number is Mandatory")
-	@Size(max=10,message="Moblie Number length should be 10!")
+	@Size(min=10,max=10,message="Moblie Number length should be 10!")
 	@Pattern(regexp = "^[6-9][0-9]{9}$",message="Mobile No is Invalid!")
 	private String mobileNo;
 	
@@ -45,7 +45,7 @@ public class Appointment {
 	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Member member;
-	
+	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
 	private VaccinationCenter vaccinationCenter;
 }
