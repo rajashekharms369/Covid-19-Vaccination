@@ -1,5 +1,6 @@
 package com.masai.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -15,12 +16,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.ToString;
 
-
+@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@ToString
+
 public class Vaccine {
 	
 	@Id
@@ -35,5 +38,6 @@ public class Vaccine {
 	private VaccineCount vaccinecount;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "vaccine")
-	private List<Member> member;
+	private List<Member> member = new ArrayList<>();
+
 }
