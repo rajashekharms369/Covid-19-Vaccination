@@ -38,4 +38,17 @@ public class GlobalExceptionHandler {
 		
 	}
 	
+	@ExceptionHandler(VaccineException.class)
+	public ResponseEntity<MyExceptionDetails> throwVaccineExceptions(VaccineException ae, WebRequest wr){
+		
+		MyExceptionDetails med = new MyExceptionDetails();
+		
+		med.setTimestamp(LocalDateTime.now());
+		med.setMessage(ae.getMessage());
+		med.setDescription(wr.getDescription(false));
+		
+		return new ResponseEntity<>(med,HttpStatus.BAD_REQUEST);
+		
+	}
+	
 }

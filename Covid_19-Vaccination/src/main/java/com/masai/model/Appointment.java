@@ -14,6 +14,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
@@ -37,7 +38,7 @@ public class Appointment {
 	@Size(max=10,message="Moblie Number length should be 10!")
 	@Pattern(regexp = "^[6-9][0-9]{9}$",message="Mobile No is Invalid!")
 	private String mobileNo;
-	
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dateOfBooking;
 	
 	private boolean bookingStatus;
