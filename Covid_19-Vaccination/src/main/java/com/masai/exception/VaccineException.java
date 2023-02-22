@@ -1,12 +1,12 @@
 package com.masai.exception;
 
-public class AppointmentException extends RuntimeException{
+public class VaccineException extends RuntimeException {
 
-	public AppointmentException() {
+	public VaccineException() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public AppointmentException(String msg) {
+	public VaccineException(String msg) {
 		// TODO Auto-generated constructor stub
 		super(msg);
 	}

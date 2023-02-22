@@ -16,18 +16,18 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.ToString;
 
-@Entity
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
+@Entity
 public class Vaccine {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer vaccineid;
 	
-	@NonNull
+//	@NonNull
 	private String vaccineName;
 	private String description;
 
