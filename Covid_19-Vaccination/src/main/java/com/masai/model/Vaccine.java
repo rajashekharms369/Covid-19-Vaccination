@@ -3,6 +3,7 @@ package com.masai.model;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,6 +23,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+
 public class Vaccine {
 	
 	@Id
@@ -37,4 +39,5 @@ public class Vaccine {
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "vaccine")
 	private List<Member> member = new ArrayList<>();
+
 }
