@@ -1,5 +1,7 @@
 package com.masai.service;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,24 @@ public class AppointmentServiceImpl implements AppointmentService{
 	public Appointment addNewAppointment(Appointment appointment) throws AppointmentException {
 		Optional<Appointment> optional = appointmentRepository.getAppointmentByBookingId(appointment.getBookingId());
 		
+		List<Appointment> appointmentList = appointmentRepository.getAllAppointmentsInDate(appointment.getDateOfBooking());
+		int count=0;
+		for(Appointment app:appointmentList) {
+			if(app.getSlot()!=null) {
+				count++;
+			}
+		}
+		if(count==9) {
+			throw new AppointmentException("All slots are booked for date "+appointment.getDateOfBooking()+" choose different day...");
+		}
+		
+		
+		for(Appointment app:appointmentList) {
+			if(app.getSlot()==appointment.getSlot()) {
+				throw new AppointmentException("Slot Unavailabe please select other slot...");
+			}
+		}
+		
 		if(optional.isEmpty()) {
 		
 		Appointment saveAppointment = appointmentRepository.save(appointment);
@@ -40,6 +60,23 @@ public class AppointmentServiceImpl implements AppointmentService{
 	@Override
 	public Appointment updateAppointment( Appointment appointment) throws AppointmentException {
 		Optional<Appointment> optional = appointmentRepository.getAppointmentByBookingId(appointment.getBookingId());
+		List<Appointment> appointmentList = appointmentRepository.getAllAppointmentsInDate(appointment.getDateOfBooking());
+		int count=0;
+		for(Appointment app:appointmentList) {
+			if(app.getSlot()!=null) {
+				count++;
+			}
+		}
+		if(count==9) {
+			throw new AppointmentException("All slots are booked for date "+appointment.getDateOfBooking()+" choose different day...");
+		}
+		
+		
+		for(Appointment app:appointmentList) {
+			if(app.getSlot()==appointment.getSlot()) {
+				throw new AppointmentException("Slot Unavailabe please select other slot...");
+			}
+		}
 		if(optional.isEmpty()) {
 			throw new AppointmentException("No appointment found with this bookingId! please give right information...");
 		}else {
@@ -60,6 +97,12 @@ public class AppointmentServiceImpl implements AppointmentService{
 			appointmentRepository.delete(appointment);
 			return true;
 		}
+	}
+
+	@Override
+	public List<Appointment> getAllAppointmentsOnPerticularDate(LocalDate dateofbooking) throws AppointmentException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

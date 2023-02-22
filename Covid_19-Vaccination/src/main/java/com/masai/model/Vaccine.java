@@ -2,6 +2,7 @@ package com.masai.model;
 
 import java.util.List;
 
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +15,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.ToString;
 
 
 @Data
@@ -24,10 +24,10 @@ import lombok.ToString;
 public class Vaccine {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer vaccineid;
 	
-//	@NonNull
+	@NonNull
 	private String vaccineName;
 	private String description;
 

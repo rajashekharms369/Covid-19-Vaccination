@@ -1,5 +1,8 @@
 package com.masai.service;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import com.masai.exception.AppointmentException;
 import com.masai.model.Appointment;
 
@@ -13,6 +16,6 @@ public interface AppointmentService {
 	
 	public boolean DeleteAppointment(Appointment appointment) throws AppointmentException;
 	
-	
+	public List<Appointment> getAllAppointmentsOnPerticularDate(LocalDate dateofbooking)throws AppointmentException;
 	
 }
