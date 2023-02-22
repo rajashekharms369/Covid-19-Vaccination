@@ -1,9 +1,9 @@
-package com.example.demo.service.vaCenter;
+package com.masai.service.vaCenter;
 
 import java.util.List;
 
-import com.example.demo.exception.VaccinationCenterException;
-import com.example.demo.model.VaccinationCenter;
+import com.masai.exception.VaccinationCenterException;
+import com.masai.model.VaccinationCenter;
 
 public interface VaccinationCenterService {
 

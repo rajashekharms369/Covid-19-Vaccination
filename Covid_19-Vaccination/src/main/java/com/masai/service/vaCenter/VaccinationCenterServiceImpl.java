@@ -1,4 +1,4 @@
-package com.example.demo.service.vaCenter;
+package com.masai.service.vaCenter;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,9 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.exception.VaccinationCenterException;
-import com.example.demo.model.VaccinationCenter;
-import com.example.demo.repository.VaccinationCenterDao;
+import com.masai.exception.VaccinationCenterException;
+import com.masai.model.VaccinationCenter;
+import com.masai.repository.VaccinationCenterDao;
 @Service
 public class VaccinationCenterServiceImpl implements VaccinationCenterService{
 

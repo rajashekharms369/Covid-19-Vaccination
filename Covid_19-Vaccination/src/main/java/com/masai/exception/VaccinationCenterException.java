@@ -1,4 +1,4 @@
-package com.example.demo.exception;
+package com.masai.exception;
 
 public class VaccinationCenterException extends RuntimeException{
 

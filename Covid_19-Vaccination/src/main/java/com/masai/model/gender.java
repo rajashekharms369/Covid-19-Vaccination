@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.masai.model;
 
 public enum gender {
 	MALE,FEMALE

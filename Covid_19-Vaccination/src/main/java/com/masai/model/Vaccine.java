@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.masai.model;
 
 import java.util.ArrayList;
 import java.util.List;

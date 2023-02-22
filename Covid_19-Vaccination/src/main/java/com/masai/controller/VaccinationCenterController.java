@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.masai.controller;
 
 import java.util.List;
 
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.model.VaccinationCenter;
-import com.example.demo.service.vaCenter.VaccinationCenterService;
+import com.masai.model.VaccinationCenter;
+import com.masai.service.vaCenter.VaccinationCenterService;
 
 
 @RestController
