@@ -8,6 +8,10 @@ public class Covid19VaccinationApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(Covid19VaccinationApplication.class, args);
+		
+		System.out.println();
+		
+	
 	}
 
 }
