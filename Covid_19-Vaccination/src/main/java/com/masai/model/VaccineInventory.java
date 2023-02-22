@@ -25,7 +25,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode
 public class VaccineInventory {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer vaccineInventoryId;
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
