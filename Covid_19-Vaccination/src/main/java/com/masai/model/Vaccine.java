@@ -29,6 +29,7 @@ public class Vaccine {
 	
 	@NonNull
 	private String vaccineName;
+	
 	private String description;
 
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "vaccine")
