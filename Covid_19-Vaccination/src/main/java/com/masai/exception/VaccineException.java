@@ -1,12 +1,14 @@
 package com.masai.exception;
 
-public class VaccineException extends Exception {
+
+public class VaccineException extends RuntimeException {
 
 	public VaccineException() {
-		super();
+		// TODO Auto-generated constructor stub
 	}
-
-	public VaccineException(String message) {
-		super(message);
+	
+	public VaccineException(String msg) {
+		// TODO Auto-generated constructor stub
+		super(msg);
 	}
 }
