@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.masai.model.VaccinationCenter;
-import com.masai.service.vaCenter.VaccinationCenterService;
+import com.masai.service.VaccinationCenterService;
 
 
 @RestController
