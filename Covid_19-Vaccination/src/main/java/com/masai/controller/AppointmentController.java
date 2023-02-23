@@ -1,9 +1,5 @@
 package com.masai.controller;
 
-
-public class AppointmentController {
-
-
 import org.springframework.web.bind.annotation.RestController;
 
 import org.springframework.beans.factory.annotation.Autowired;

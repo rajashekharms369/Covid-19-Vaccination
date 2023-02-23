@@ -3,6 +3,7 @@ package com.masai.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.masai.exception.IdCardException;
 import com.masai.model.AdharCard;
@@ -10,6 +11,7 @@ import com.masai.model.IdCard;
 import com.masai.model.PanCard;
 import com.masai.repository.IdCardRepository;
 
+@Service
 public class IdServiceImpl implements IdCardService {
 
 @Autowired

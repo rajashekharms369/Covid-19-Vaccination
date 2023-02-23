@@ -4,12 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.masai.exception.MemberException;
 import com.masai.model.Member;
 import com.masai.repository.IdCardRepository;
 import com.masai.repository.MemberServiceRepository;
 
+@Service
 public class MemberServiceImpl implements MemberService{
 	
 @Autowired

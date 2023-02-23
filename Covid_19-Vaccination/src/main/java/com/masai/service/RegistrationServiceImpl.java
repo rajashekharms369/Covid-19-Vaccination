@@ -2,6 +2,7 @@ package com.masai.service;
 
 import java.util.Optional;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,7 @@ import com.masai.model.Login;
 import com.masai.model.LoginUserSession;
 import com.masai.repository.LoginRepository;
 import com.masai.repository.RegistrationRepository;
+
 @Service
 public class RegistrationServiceImpl implements RegistrationService{
 

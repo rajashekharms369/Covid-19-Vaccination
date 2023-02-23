@@ -14,6 +14,7 @@ import com.masai.repository.LoginRepository;
 import com.masai.repository.RegistrationRepository;
 
 import net.bytebuddy.utility.RandomString;
+
 @Service
 public class LoginServiceImpl implements LoginService {
 	
