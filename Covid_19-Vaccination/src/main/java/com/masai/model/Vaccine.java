@@ -1,6 +1,8 @@
 package com.masai.model;
 
+import java.util.ArrayList;
 import java.util.List;
+
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -21,6 +23,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+
 public class Vaccine {
 	
 	@Id
@@ -29,11 +32,13 @@ public class Vaccine {
 	
 	@NonNull
 	private String vaccineName;
+	
 	private String description;
 
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "vaccine")
 	private VaccineCount vaccinecount;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "vaccine")
-	private List<Member> member;
+	private List<Member> member = new ArrayList<>();
+
 }

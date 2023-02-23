@@ -26,6 +26,7 @@ import lombok.NoArgsConstructor;
 public class VaccineInventory {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+
 	private Integer vaccineInventoryId;
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
