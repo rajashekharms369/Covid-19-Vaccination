@@ -7,12 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.masai.exception.MemberException;
 import com.masai.model.Member;
+import com.masai.repository.IdCardRepository;
 import com.masai.repository.MemberServiceRepository;
 
 public class MemberServiceImpl implements MemberService{
 	
 @Autowired
 private	MemberServiceRepository memberServiceRepository;
+@Autowired
+private IdCardRepository  idCardRepository;
 	
 	@Override
 	public List<Member> getAllMember() {
@@ -78,6 +81,44 @@ private	MemberServiceRepository memberServiceRepository;
 		}
 		
 		
+		
+		
+	}
+
+	@Override
+	public Member getmemberByAadharNumber(Long aadharNumber) throws MemberException {
+		
+	      List<Member> members=  memberServiceRepository.findAll();
+	      
+	      for(Member member:members) {
+	    	  if(member.getIdCard().getAdharCard().getAdharNo()==aadharNumber) {
+	    		  return member;
+	    	  }
+	      }
+	    	  
+	      throw new MemberException("Member odes not exits with is Aadhar Number");
+	    	  
+	      
+	      
+		
+		
+		
+		
+	}
+
+	@Override
+	public Member getmemberByPanNumber(String panNumber) throws MemberException {
+		
+		
+		  List<Member> members=  memberServiceRepository.findAll();
+		  
+	      for(Member member:members) {
+	    	  if(member.getIdCard().getPancard().getPanNo().equalsIgnoreCase(panNumber)) {
+	    		  return member;
+	    	  }
+	      }
+	      throw new MemberException("Member odes not exits with is PAN Number");
+    	  
 		
 		
 	}

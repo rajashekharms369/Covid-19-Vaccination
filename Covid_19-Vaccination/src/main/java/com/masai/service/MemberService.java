@@ -18,5 +18,9 @@ public interface MemberService {
 	
 	public Boolean deleteMember(Member member)throws MemberException;
 	
+	public Member getmemberByAadharNumber(Long aadharNumber)throws MemberException;
+	
+	public Member getmemberByPanNumber(String panNumber)throws MemberException;
+	
 	
 }

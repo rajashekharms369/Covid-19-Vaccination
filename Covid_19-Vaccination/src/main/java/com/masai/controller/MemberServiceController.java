@@ -79,5 +79,28 @@ public class MemberServiceController {
     	
     }
 	
+	@GetMapping("/getMemberByAadharNumber/{aNo}")
+	public ResponseEntity<Member> getMemberByAadharNumberUsecase(@PathVariable("aNo") Long aNo ){
+		
+		
+		Member member=memberService.getmemberByAadharNumber(aNo);
+		
+		return  new ResponseEntity<Member>(member,HttpStatus.ACCEPTED);
+		
+		
+		
+		
+		
+	}
+	
+	
+	@GetMapping("/getMemberPanNumber/{pNo}")
+	public ResponseEntity<Member> getMemberByPanNumber(@PathVariable("pNo") String pNo){
+		
+		 Member existingMember =  memberService.getmemberByPanNumber(pNo);
+		
+		return  new ResponseEntity<Member>(existingMember,HttpStatus.ACCEPTED);
+	}
+	
 	
 }

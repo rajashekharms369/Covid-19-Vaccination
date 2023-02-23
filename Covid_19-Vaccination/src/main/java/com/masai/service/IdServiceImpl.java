@@ -48,7 +48,6 @@ private	IdCardRepository idCardRepository;
 	    
 	 
 	    
-		
 		return adharCard;
 	}
 
