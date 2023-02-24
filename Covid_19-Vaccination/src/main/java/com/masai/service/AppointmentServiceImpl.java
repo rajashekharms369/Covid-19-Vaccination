@@ -9,12 +9,17 @@ import org.springframework.stereotype.Service;
 
 import com.masai.exception.AppointmentException;
 import com.masai.model.Appointment;
+import com.masai.model.VaccinationCenter;
 import com.masai.repository.AppointmentRepository;
+import com.masai.repository.VaccinationCenterRepository;
 
 @Service
 public class AppointmentServiceImpl implements AppointmentService{
 	@Autowired
 	private AppointmentRepository appointmentRepository;
+	
+	@Autowired
+	private VaccinationCenterRepository vaccinationCenterRepository;
 
 	@Override
 	public Appointment getAppointmentByBookingId(Long bookingId) throws AppointmentException {
@@ -25,7 +30,16 @@ public class AppointmentServiceImpl implements AppointmentService{
 	}
 
 	@Override
-	public Appointment addNewAppointment(Appointment appointment) throws AppointmentException {
+	public Appointment addNewAppointment(Appointment appointment,Integer centerId) throws AppointmentException {
+		
+		Optional<VaccinationCenter> centerOpt = vaccinationCenterRepository.findById(centerId);
+		
+		if(centerOpt.isEmpty()) {
+			throw new AppointmentException("No center found with this id!");
+		}
+		
+		
+		
 		Optional<Appointment> optional = appointmentRepository.getAppointmentByBookingId(appointment.getBookingId());
 		
 		List<Appointment> appointmentList = appointmentRepository.getAllAppointmentsInDate(appointment.getDateOfBooking());
@@ -47,6 +61,8 @@ public class AppointmentServiceImpl implements AppointmentService{
 		}
 		
 		if(optional.isEmpty()) {
+			appointment.setVaccinationCenter(centerOpt.get());
+			centerOpt.get().getAppointments().add(appointment);
 		
 		Appointment saveAppointment = appointmentRepository.save(appointment);
 		

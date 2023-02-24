@@ -1,6 +1,7 @@
 package com.masai.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -30,12 +31,12 @@ public class VaccineRegistration {
 	@NotBlank(message = "Mobile Number is Mandatory")
 	@Size(min =10, max=10,message="Moblie Number length should be 10!")
 	@Pattern(regexp = "^[6-9][0-9]{9}$",message="Mobile No is Invalid!")
-	private Long mobileno;
+	private String mobileno;
 
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 	private LocalDate dateofregistration;
     @JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "vaccineRegistration")
-	private List<Member> members;
+	private List<Member> members = new ArrayList<>();
 }

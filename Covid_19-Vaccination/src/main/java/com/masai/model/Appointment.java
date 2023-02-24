@@ -16,6 +16,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -36,7 +38,7 @@ public class Appointment {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long bookingId;
 	
-	@NotBlank(message = "Mobile Number is Mandatory")
+//	@NotBlank(message = "Mobile Number is Mandatory")
 	@Size(min=10,max=10,message="Moblie Number length should be 10!")
 	@Pattern(regexp = "^[6-9][0-9]{9}$",message="Mobile No is Invalid!")
 	private String mobileNo;
@@ -47,6 +49,7 @@ public class Appointment {
 	private LocalDate dateOfBooking;
 	
 	private boolean bookingStatus;
+	
 	@Enumerated(EnumType.STRING)
 	private Slot slot;
 	
@@ -55,7 +58,10 @@ public class Appointment {
 	private Member member;
 
 	
-	@JsonIgnore
+	
 	@ManyToOne(cascade = CascadeType.ALL)
 	private VaccinationCenter vaccinationCenter;
+	
+	
+	
 }

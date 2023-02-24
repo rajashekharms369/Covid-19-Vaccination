@@ -1,5 +1,6 @@
 package com.masai.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.websocket.server.PathParam;
@@ -12,15 +13,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.masai.DTO.AppointmentDTO;
+import com.masai.DTO.VaccineDTO;
 import com.masai.exception.MemberException;
+import com.masai.model.Appointment;
 import com.masai.model.Member;
+import com.masai.model.Slot;
 import com.masai.service.MemberService;
 
 @RestController
 public class MemberServiceController {
+	
 	@Autowired
 	private MemberService memberService;
 	
@@ -103,4 +109,44 @@ public class MemberServiceController {
 	}
 	
 	
+	//==============	from here code written by Gaurav Shirke - fw21_0985 ====================
+	
+	@GetMapping(value = "/member/vaccines")
+	public ResponseEntity<List<VaccineDTO>> getAllVaccineNameAndDiscription(){
+		List<VaccineDTO> allVaccines = memberService.getAllVaccines();
+		
+		return new ResponseEntity<>(allVaccines,HttpStatus.ACCEPTED);
+	}
+	
+	@PostMapping(value = "/member/vaccine/{memberid}/{vaccinename}")
+	public ResponseEntity<String> selectVaccineforMember(@PathVariable("memberid") Integer memberId,@PathVariable("vaccinename") String vaccineName){
+		String msg = memberService.selectVaccineByName(memberId, vaccineName);
+		
+		return  new ResponseEntity<>(msg,HttpStatus.OK);
+	}
+	
+	
+	@PostMapping(value = "/member/register/{memberid}/{mobileno}")
+	public ResponseEntity<String> registerVaccineforMember(@PathVariable("memberid") Integer memberId,@PathVariable("mobileno") String mobileNo){
+		String msg = memberService.registerMemberForVaccination(memberId, mobileNo);
+		
+		return  new ResponseEntity<>(msg,HttpStatus.OK);
+	}
+	
+
+	@GetMapping(value = "/member/appointment/{day}/{month}/{year}")
+	public ResponseEntity<List<AppointmentDTO>> seeAllAppointmentsOfPerticularDate(@PathVariable("day") Integer day,@PathVariable("month") Integer month,@PathVariable("year") Integer year){
+		LocalDate date = LocalDate.of(year,month,day);
+//		System.out.println(appointmentDate);
+		List<AppointmentDTO> appointmentlist = memberService.getAppointmentsByDate(date);
+		
+		return new ResponseEntity<>(appointmentlist,HttpStatus.ACCEPTED);
+	}
+		
+	@PostMapping(value = "/member/appointment/{memberid}/{bookingid}/{slot}")
+	public ResponseEntity<Appointment> selectAppointment(@PathVariable("memberid") Integer memberId,@PathVariable("bookingid") Long appointmentId,@PathVariable("slot") Slot slot){
+		Appointment appointment = memberService.selectAppointment(memberId, appointmentId, slot);
+		
+		 return  new ResponseEntity<>(appointment,HttpStatus.CREATED);
+	}
 }
