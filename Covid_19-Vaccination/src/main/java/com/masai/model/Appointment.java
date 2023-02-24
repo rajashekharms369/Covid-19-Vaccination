@@ -51,11 +51,11 @@ public class Appointment {
 	private Slot slot;
 	
 	@JsonIgnore
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL )
 	private Member member;
 
-	@JsonIgnore
 	
+	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
 	private VaccinationCenter vaccinationCenter;
 }

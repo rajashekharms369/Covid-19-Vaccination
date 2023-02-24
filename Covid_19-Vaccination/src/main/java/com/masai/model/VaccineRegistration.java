@@ -14,6 +14,7 @@ import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,7 +35,7 @@ public class VaccineRegistration {
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 	private LocalDate dateofregistration;
-
+    @JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "vaccineRegistration")
 	private List<Member> members;
 }
