@@ -38,7 +38,7 @@ public class VaccineRegistrationController {
 	}
 	
 	
-	@GetMapping("/getMember/{mob}")
+	@GetMapping("getMember/{mob}")
 	public ResponseEntity<Member> getMemberByMobile(@PathVariable long mob) throws VaccineRegistrationException{
 		
 		Member m = vaccineRegistrationService.getMemberByMobile(mob);
