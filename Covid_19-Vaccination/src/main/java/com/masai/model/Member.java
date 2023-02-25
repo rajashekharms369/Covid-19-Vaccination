@@ -14,6 +14,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.Future;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -31,21 +32,29 @@ public class Member {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer memberId;
+	
 	@JsonIgnore
-	private boolean dose1Status;
+	private boolean dose1Status=false;
+	
 	@JsonIgnore
-	private boolean dose2Status;
+	private boolean dose2Status=false;
+	
 	@JsonIgnore
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+	@Future
 	private LocalDate dose1Date;
+	
 	@JsonIgnore
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+	@Future
 	private LocalDate dose2Date;
+	
 	@JsonIgnore
 	private String vaccineName;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private IdCard idCard;
+	
 	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
 	private Vaccine vaccine;
@@ -57,6 +66,5 @@ public class Member {
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL,mappedBy = "member")
 	private List<Appointment> appointments = new ArrayList<Appointment>();
-
 		
 }

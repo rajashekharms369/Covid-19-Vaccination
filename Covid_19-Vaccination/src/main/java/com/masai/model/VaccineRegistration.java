@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -30,12 +32,14 @@ public class VaccineRegistration {
 	@Id
 	@NotBlank(message = "Mobile Number is Mandatory")
 	@Size(min =10, max=10,message="Moblie Number length should be 10!")
-	@Pattern(regexp = "^[6-9][0-9]{9}$",message="Mobile No is Invalid!")
+	@Pattern(regexp = "^[1-9][0-9]{9}$",message="Mobile No is Invalid!")
 	private String mobileno;
 
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+	@NotNull
 	private LocalDate dateofregistration;
+	
     @JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "vaccineRegistration")
 	private List<Member> members = new ArrayList<>();
