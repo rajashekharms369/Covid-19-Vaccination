@@ -9,8 +9,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -38,7 +41,8 @@ public class Vaccine {
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "vaccine")
 	private VaccineCount vaccinecount;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "vaccine")
-	private List<Member> member = new ArrayList<>();
+	@JsonIgnore
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "vaccine")
+	private Member member ;
 
 }

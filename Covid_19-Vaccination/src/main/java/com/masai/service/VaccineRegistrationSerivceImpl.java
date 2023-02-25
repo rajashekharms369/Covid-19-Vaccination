@@ -57,7 +57,7 @@ public class VaccineRegistrationSerivceImpl implements VaccineRegistrationSerivc
 	@Override
 	public VaccineRegistration updateVaccineRegistration(VaccineRegistration reg) throws VaccineRegistrationException {
 		
-		Optional<VaccineRegistration> vac = vacRegRep.findById(reg.getMobileno());
+		Optional<VaccineRegistration> vac = vacRegRep.findByMobileno(reg.getMobileno());
 		
 		if(vac.isPresent()) {
 			return vacRegRep.save(reg);
@@ -69,7 +69,7 @@ public class VaccineRegistrationSerivceImpl implements VaccineRegistrationSerivc
 
 	@Override
 	public Boolean deleteVaccineRegistration(VaccineRegistration reg) throws VaccineRegistrationException {
-		Optional<VaccineRegistration> vac = vacRegRep.findById(reg.getMobileno());
+		Optional<VaccineRegistration> vac = vacRegRep.findByMobileno(reg.getMobileno());
 		
 		if(vac.isPresent()) {
 			vacRegRep.delete(reg);

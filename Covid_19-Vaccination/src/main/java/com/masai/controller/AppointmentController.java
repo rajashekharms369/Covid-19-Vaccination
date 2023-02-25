@@ -24,6 +24,7 @@ public class AppointmentController {
 	private AppointmentService appointmentService;
 	
 	
+	
 //	=========== get mapping logic ======= 
 	@GetMapping(value = "/appointment/{id}")
 	public ResponseEntity<Appointment> getAppointmentBybookingIdHandller(@PathVariable("id") Long bookingId){
@@ -35,10 +36,10 @@ public class AppointmentController {
 	}
 	
 //========= saving new appointment =============
-	@PostMapping(value = "/appointment")
-	public ResponseEntity<Appointment> addNewAppointmentHandller(@RequestBody Appointment appointment){
+	@PostMapping(value = "/appointment/{centerId}")
+	public ResponseEntity<Appointment> addNewAppointmentHandller(@RequestBody Appointment appointment, @PathVariable("centerId") Integer centerId){
 		
-		Appointment saveAppointment = appointmentService.addNewAppointment(appointment);
+		Appointment saveAppointment = appointmentService.addNewAppointment(appointment, centerId);
 		
 		return new ResponseEntity<>(saveAppointment, HttpStatus.CREATED);
 		

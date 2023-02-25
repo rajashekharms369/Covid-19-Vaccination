@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.masai.exception.VaccineException;
 import com.masai.model.Vaccine;
+import com.masai.model.VaccineCount;
 import com.masai.repository.VaccineRepository;
 
 @Service
@@ -33,6 +34,9 @@ public class VaccineServiceImpl implements VaccineService {
 	public Vaccine addNewVaccine(Vaccine vaccine) throws VaccineException {
 		Optional<Vaccine> optional = vaccineRepository.findById(vaccine.getVaccineid());
 		if(optional.isEmpty()) {
+			VaccineCount vaccineCount = vaccine.getVaccinecount();
+			vaccineCount.setVaccine(vaccine);
+			
 			return vaccineRepository.save(vaccine);
 			
 		}else {

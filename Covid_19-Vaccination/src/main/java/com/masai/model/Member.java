@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -30,26 +31,30 @@ public class Member {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer memberId;
-	
+	@JsonIgnore
 	private boolean dose1Status;
+	@JsonIgnore
 	private boolean dose2Status;
-
+	@JsonIgnore
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
 	private LocalDate dose1Date;
-
+	@JsonIgnore
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
 	private LocalDate dose2Date;
+	@JsonIgnore
+	private String vaccineName;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private IdCard idCard;
-
-	@ManyToOne(cascade = CascadeType.ALL)
+	@JsonIgnore
+	@OneToOne(cascade = CascadeType.ALL)
 	private Vaccine vaccine;
-   
+	
+	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
 	private VaccineRegistration vaccineRegistration;
      
-	
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL,mappedBy = "member")
 	private List<Appointment> appointments = new ArrayList<Appointment>();
 

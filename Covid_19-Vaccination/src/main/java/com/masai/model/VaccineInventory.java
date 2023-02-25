@@ -30,15 +30,15 @@ public class VaccineInventory {
 
 	private Integer vaccineInventoryId;
 
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	@NotNull(message = "Date should not be Null")
 	private LocalDate date;
 
-	
+	@JsonIgnore
 	@OneToMany( cascade = CascadeType.ALL ,mappedBy = "vaccineInventory")
 	private List<VaccineCount> vaccineCounts;
 
-	
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "vaccineInventory")
 	private List<VaccinationCenter> vaccinationCenters;
 }
