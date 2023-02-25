@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import lombok.Data;
@@ -23,8 +24,8 @@ public class Admin {
 	private String name;
 	
 	@Column(unique = true)
-	@NotNull(message="Mobile is Empty")
-	@Size(max=10, min=10)
+	@Size(min=10,max=10,message="Moblie Number length should be 10!")
+	@Pattern(regexp = "^[1-9][0-9]{9}$",message="Mobile No is Invalid!")
 	private String mobileNo;
 	
 	@NotNull(message="Password is Empty")
