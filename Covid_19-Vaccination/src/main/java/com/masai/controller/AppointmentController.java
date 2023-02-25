@@ -2,6 +2,8 @@ package com.masai.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,10 +38,11 @@ public class AppointmentController {
 	}
 	
 //========= saving new appointment =============
-	@PostMapping(value = "/appointment/{centerId}")
-	public ResponseEntity<Appointment> addNewAppointmentHandller(@RequestBody Appointment appointment, @PathVariable("centerId") Integer centerId){
+	@PostMapping(value = "/appointment/{centerId}/{number}")
+	public ResponseEntity<List<Appointment>> addNewAppointmentHandller(@RequestBody Appointment appointment, @PathVariable("centerId") Integer centerId, @PathVariable("number") Integer noOfAppointments){
 		
-		Appointment saveAppointment = appointmentService.addNewAppointment(appointment, centerId);
+		
+		List<Appointment> saveAppointment = appointmentService.addNewAppointment(appointment, centerId, noOfAppointments);
 		
 		return new ResponseEntity<>(saveAppointment, HttpStatus.CREATED);
 		

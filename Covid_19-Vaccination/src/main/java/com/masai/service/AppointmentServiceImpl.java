@@ -1,6 +1,7 @@
 package com.masai.service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,7 +31,7 @@ public class AppointmentServiceImpl implements AppointmentService{
 	}
 
 	@Override
-	public Appointment addNewAppointment(Appointment appointment,Integer centerId) throws AppointmentException {
+	public List<Appointment> addNewAppointment(Appointment appointment,Integer centerId, Integer noOfAppontments) throws AppointmentException {
 		
 		Optional<VaccinationCenter> centerOpt = vaccinationCenterRepository.findById(centerId);
 		
@@ -42,31 +43,18 @@ public class AppointmentServiceImpl implements AppointmentService{
 		
 		Optional<Appointment> optional = appointmentRepository.getAppointmentByBookingId(appointment.getBookingId());
 		
-		List<Appointment> appointmentList = appointmentRepository.getAllAppointmentsInDate(appointment.getDateOfBooking());
-		int count=0;
-		for(Appointment app:appointmentList) {
-			if(app.getSlot()!=null) {
-				count++;
-			}
-		}
-		if(count==9) {
-			throw new AppointmentException("All slots are booked for date "+appointment.getDateOfBooking()+" choose different day...");
-		}
-		
-		
-		for(Appointment app:appointmentList) {
-			if(app.getSlot()==appointment.getSlot()) {
-				throw new AppointmentException("Slot Unavailabe please select other slot...");
-			}
-		}
-		
+		List<Appointment> appList = new ArrayList<>();
 		if(optional.isEmpty()) {
+			for(int i=0;i<noOfAppontments;i++) {
 			appointment.setVaccinationCenter(centerOpt.get());
 			centerOpt.get().getAppointments().add(appointment);
 		
 		Appointment saveAppointment = appointmentRepository.save(appointment);
 		
-		return saveAppointment;
+		   appList.add(saveAppointment);
+			}
+			
+			return appList;
 		}else {
 			throw new AppointmentException("Appointment already exist please make new one...");
 		}

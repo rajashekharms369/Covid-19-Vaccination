@@ -32,14 +32,14 @@ public class VaccineRegistrationController {
 
 	
 	@GetMapping("/getVaccine/{mobileno}")
-	public ResponseEntity<VaccineRegistration> getVaccineRegistration(@PathVariable long monileno) throws VaccineRegistrationException{
+	public ResponseEntity<VaccineRegistration> getVaccineRegistration(@PathVariable String monileno) throws VaccineRegistrationException{
 		VaccineRegistration vr = vaccineRegistrationService.getVaccineRegistration(monileno);
 		return new ResponseEntity<VaccineRegistration>(vr, HttpStatus.FOUND);
 	}
 	
 	
 	@GetMapping("getMember/{mob}")
-	public ResponseEntity<Member> getMemberByMobile(@PathVariable long mob) throws VaccineRegistrationException{
+	public ResponseEntity<Member> getMemberByMobile(@PathVariable String mob) throws VaccineRegistrationException{
 		
 		Member m = vaccineRegistrationService.getMemberByMobile(mob);
 		return new ResponseEntity<Member>(m, HttpStatus.FOUND);

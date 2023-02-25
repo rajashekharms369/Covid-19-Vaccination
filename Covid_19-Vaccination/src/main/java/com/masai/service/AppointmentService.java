@@ -10,7 +10,7 @@ public interface AppointmentService {
 
 	public Appointment getAppointmentByBookingId(Long bookingId)throws AppointmentException ;
 	
-	public Appointment addNewAppointment(Appointment appointment,Integer centerId) throws AppointmentException;
+	public List<Appointment> addNewAppointment(Appointment appointment,Integer centerId, Integer noOfAppointmets) throws AppointmentException;
 	
 	public Appointment updateAppointment(Appointment appointment) throws AppointmentException;
 	
