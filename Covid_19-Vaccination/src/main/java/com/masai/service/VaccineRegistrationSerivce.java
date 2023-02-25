@@ -10,9 +10,9 @@ public interface VaccineRegistrationSerivce {
 	
 	public List<VaccineRegistration> getAllVaccineRegistration() throws VaccineRegistrationException;
 	
-	public VaccineRegistration getVaccineRegistration(Long mobileNo) throws VaccineRegistrationException;
+	public VaccineRegistration getVaccineRegistration(String mobileNo) throws VaccineRegistrationException;
 	
-	public Member getMemberByMobile(Long mobileNo) throws VaccineRegistrationException;
+	public Member getMemberByMobile(String mobileNo) throws VaccineRegistrationException;
 	
 	public VaccineRegistration addVaccineRegistration(VaccineRegistration reg);
 	

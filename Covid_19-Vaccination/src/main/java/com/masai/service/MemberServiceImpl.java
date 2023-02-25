@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.masai.DTO.AppointmentDTO;
 import com.masai.DTO.VaccineDTO;
+import com.masai.exception.AppointmentException;
 import com.masai.exception.MemberException;
 import com.masai.model.Appointment;
 import com.masai.model.Member;
@@ -177,6 +178,8 @@ private AppointmentRepository appointmentRepository;
      
 		Optional<Vaccine> optional = vaccineRepository.getVaccineByName(vaccineName);
 		
+	
+		
 		if(optional.isEmpty()) {
 			throw new MemberException("Wrong vaccine name....");
 		}
@@ -195,6 +198,7 @@ private AppointmentRepository appointmentRepository;
 		
 		memberOpt.get().setVaccine(optional.get());
 		optional.get().setMember(memberOpt.get());
+		memberOpt.get().setVaccineName(vaccineName);
 		
 		memberServiceRepository.save(memberOpt.get());
 		
@@ -254,13 +258,34 @@ private AppointmentRepository appointmentRepository;
 				throw new MemberException("You completed your both dose...");
 			}
 			
+			
+			
 		Optional<Appointment> optional = appointmentRepository.getAppointmentByBookingId(appointmentId);
+		
+		List<Appointment> list = appointmentRepository.getAllAppointmentsInDate(optional.get().getDateOfBooking());
+		int count=0;
+		for(Appointment app:list) {
+			if(app.getSlot()!=null) {
+				count++;
+			}
+		}
+		if(count==9) {
+			throw new MemberException("All slotes are bookrd for this date....");
+		}
+		for(Appointment app:list) {
+			if(app.getSlot()==slot) {
+				throw new MemberException("Slot is booked choose another slot...");
+			}
+		}
 		
 		if(optional.isEmpty()) {
 			throw new MemberException("Wrong appointmentId...");
 		}
 	
 		Appointment appointment = optional.get();
+		
+	
+		
 		
 		if(appointment.getMobileNo()!=null) {
 			throw new MemberException("Appointment not available...");

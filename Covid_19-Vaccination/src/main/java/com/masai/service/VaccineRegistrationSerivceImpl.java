@@ -27,8 +27,8 @@ public class VaccineRegistrationSerivceImpl implements VaccineRegistrationSerivc
 	}
 
 	@Override
-	public VaccineRegistration getVaccineRegistration(Long mobileNo) throws VaccineRegistrationException {
-		Optional<VaccineRegistration> vac = vacRegRep.findById(mobileNo);
+	public VaccineRegistration getVaccineRegistration(String mobileNo) throws VaccineRegistrationException {
+		Optional<VaccineRegistration> vac = vacRegRep.findByMobileno(mobileNo);
 		if(vac.get()==null) {
 			throw new VaccineRegistrationException("No Vaccine Registrations found.");
 		}
@@ -36,7 +36,7 @@ public class VaccineRegistrationSerivceImpl implements VaccineRegistrationSerivc
 	}
 
 	@Override
-	public Member getMemberByMobile(Long mobileNo) throws VaccineRegistrationException {
+	public Member getMemberByMobile(String mobileNo) throws VaccineRegistrationException {
 		Member list = vacRegRep.getMemberByMobileNo(mobileNo);
 		
 		if(list==null) {
