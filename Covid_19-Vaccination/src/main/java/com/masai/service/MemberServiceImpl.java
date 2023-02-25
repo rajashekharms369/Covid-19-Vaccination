@@ -272,15 +272,18 @@ private AppointmentRepository appointmentRepository;
 		appointment.setBookingStatus(true);
 		appointment.setMember(memberOpt.get());
 		memberOpt.get().getAppointments().add(appointment);
-		if(memberOpt.get().getDose1Date()==null && memberOpt.get().getDose2Date()==null ) {
-			memberOpt.get().setDose1Date(appointment.getDateOfBooking());
-			memberOpt.get().setDose1Status(true);
-		}
 		
 		if(memberOpt.get().getDose1Date()!=null && memberOpt.get().getDose2Date()==null ) {
 			memberOpt.get().setDose2Date(appointment.getDateOfBooking());
 			memberOpt.get().setDose2Status(true);
 		}
+		
+		if(memberOpt.get().getDose1Date()==null && memberOpt.get().getDose2Date()==null ) {
+			memberOpt.get().setDose1Date(appointment.getDateOfBooking());
+			memberOpt.get().setDose1Status(true);
+		}
+		
+		
 		
 		memberServiceRepository.save(memberOpt.get());
 		
