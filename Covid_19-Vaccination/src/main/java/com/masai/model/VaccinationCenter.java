@@ -30,6 +30,7 @@ public class VaccinationCenter {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer centerid;
+	
 	@Min(3)
 	private Integer code;
 
@@ -52,7 +53,7 @@ public class VaccinationCenter {
 
 	@NotNull(message = "Pincode can not be null")
 	@NotBlank(message = "Pincode is Mandatory")
-	@Size(min = 6, max = 8)
+	@Size(min = 6, max = 6)
 	private String pincode;
    
 	@JsonIgnore
