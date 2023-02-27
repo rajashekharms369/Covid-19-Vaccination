@@ -1,6 +1,6 @@
 # Covid-19-Vaccination Application REST API
 
-<img style="" src="BharathCoVax.jpeg">
+<img style="width: 150px; heigth=150px" src="BharathCoVax.jpeg">
 
 ## Covid-19-Vaccination Application REST API
 We collaboratively have developed REST API for Covid-19 Application. This API incorporates all the fundamental CRUD operations of both Admin side and Member/patient side along with validation for every entity and respective exception handling.
